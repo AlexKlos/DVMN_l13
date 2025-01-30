@@ -167,7 +167,7 @@ def main():
     print_table(hh_salary_statistic, 'HeadHunter Moscow')
 
     sj_salary_statistic = get_sj_salary_statistic(programming_languages, SUPERJOB_API_KEY)
-    print_table(sj_salary_statistic, 'SuperJov Moscow')
+    print_table(sj_salary_statistic, 'SuperJob Moscow')
 
 
 if __name__ == '__main__':

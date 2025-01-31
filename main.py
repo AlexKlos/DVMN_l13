@@ -99,16 +99,16 @@ def predict_sj_rub_salary(vacancie: dict) -> int:
     
 
 def get_sj_average_salary(vacancies: list) -> tuple[int, int]:
-    average_salary = 0
+    salary_amount = 0
     salary_count = 0
     for vacancie in vacancies:
         salary = predict_sj_rub_salary(vacancie)
         if salary:
-            average_salary += salary
+            salary_amount += salary
             salary_count += 1
     
     if average_salary > 0:
-        average_salary = average_salary / salary_count
+        average_salary = salary_amount / salary_count
 
     return int(average_salary), salary_count
 

@@ -1,7 +1,7 @@
 import os
-import requests
 
 from dotenv import load_dotenv
+import requests
 from terminaltables import AsciiTable
 
 

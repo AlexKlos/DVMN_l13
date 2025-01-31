@@ -107,7 +107,7 @@ def get_sj_average_salary(vacancies: list) -> tuple[int, int]:
             salary_amount += salary
             salary_count += 1
     
-    if average_salary > 0:
+    if salary_amount > 0:
         average_salary = salary_amount / salary_count
 
     return int(average_salary), salary_count

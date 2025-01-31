@@ -90,11 +90,11 @@ def get_sj_vacancies(programming_language: str, SUPERJOB_API_KEY: str) -> list:
 def predict_sj_rub_salary(vacancie: dict) -> int:
     payment_from = vacancie['payment_from']
     payment_to = vacancie['payment_to']
-    if payment_from > 0 and payment_to > 0:
+    if payment_from and payment_to:
         return int((payment_from + payment_to) / 2)
-    elif payment_from > 0:
+    elif payment_from:
         return int(payment_from * 1.2)
-    elif payment_to > 0:
+    elif payment_to:
         return int(payment_to * 0.8)
     
 
@@ -107,7 +107,7 @@ def get_sj_average_salary(vacancies: list) -> tuple[int, int]:
             salary_amount += salary
             salary_count += 1
     
-    if salary_amount > 0:
+    if salary_amount:
         average_salary = salary_amount / salary_count
 
     return int(average_salary), salary_count

@@ -5,6 +5,15 @@ import requests
 from terminaltables import AsciiTable
 
 
+def predict_salary(salary_from: int, salary_to: int) -> int:
+    if salary_from and salary_to:
+        return int((salary_from + salary_to) / 2)
+    elif not salary_from:
+        return int(salary_to * 0.8)
+    elif not salary_to:
+        return int(salary_from * 1.2)
+
+
 def get_hh_vacancies(programming_language: str) -> list:
     area_index = 1
     searching_period = 30
@@ -36,12 +45,7 @@ def get_hh_vacancies(programming_language: str) -> list:
 def predict_hh_rub_salary(vacancie: dict) -> int:
     salary_from = vacancie['salary']['from']
     salary_to = vacancie['salary']['to']
-    if salary_from and salary_to:
-        return int((salary_from + salary_to) / 2)
-    elif not salary_from:
-        return int(salary_to * 0.8)
-    elif not salary_to:
-        return int(salary_from * 1.2)
+    return predict_salary(salary_from, salary_to)
 
 
 def get_hh_average_salary(vacancies: list) -> int:
@@ -92,17 +96,13 @@ def get_sj_vacancies(programming_language: str, superjob_api_key: str) -> list:
 def predict_sj_rub_salary(vacancie: dict) -> int:
     payment_from = vacancie['payment_from']
     payment_to = vacancie['payment_to']
-    if payment_from and payment_to:
-        return int((payment_from + payment_to) / 2)
-    elif payment_from:
-        return int(payment_from * 1.2)
-    elif payment_to:
-        return int(payment_to * 0.8)
+    return predict_salary(payment_from, payment_to)
     
 
 def get_sj_average_salary(vacancies: list) -> tuple[int, int]:
     salary_amount = 0
     salary_count = 0
+    average_salary = 0
     for vacancie in vacancies:
         salary = predict_sj_rub_salary(vacancie)
         if salary:
@@ -156,14 +156,14 @@ def main():
     programming_languages = [
         'Python',
         'C++',
-        'Java',
-        'C',
-        'C#',
-        'JavaScript',
-        'Go',
-        'SQL',
-        'Visual Basic',
-        'Fortran'
+        # 'Java',
+        # 'C',
+        # 'C#',
+        # 'JavaScript',
+        # 'Go',
+        # 'SQL',
+        # 'Visual Basic',
+        # 'Fortran'
     ]
 
     hh_salary_statistic = get_hh_salary_statistic(programming_languages)

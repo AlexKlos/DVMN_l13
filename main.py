@@ -156,14 +156,14 @@ def main():
     programming_languages = [
         'Python',
         'C++',
-        # 'Java',
-        # 'C',
-        # 'C#',
-        # 'JavaScript',
-        # 'Go',
-        # 'SQL',
-        # 'Visual Basic',
-        # 'Fortran'
+        'Java',
+        'C',
+        'C#',
+        'JavaScript',
+        'Go',
+        'SQL',
+        'Visual Basic',
+        'Fortran'
     ]
 
     hh_salary_statistic = get_hh_salary_statistic(programming_languages)

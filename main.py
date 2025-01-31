@@ -48,7 +48,9 @@ def get_hh_average_salary(vacancies: list) -> int:
     salary_amount = 0
     for vacancie in vacancies:
         salary_amount += predict_hh_rub_salary(vacancie)
-    average_salary = salary_amount / len(vacancies)
+    
+    if len(vacancies):
+        average_salary = salary_amount / len(vacancies)
 
     return int(average_salary)
 

@@ -6,6 +6,9 @@ from terminaltables import AsciiTable
 
 
 def get_hh_vacancies(programming_language: str) -> list:
+    area_index = 1
+    searching_period = 30
+    vacabcies_per_page = 100
     url = 'https://api.hh.ru/vacancies'
     vacancies = []
     pages = 1
@@ -13,11 +16,11 @@ def get_hh_vacancies(programming_language: str) -> list:
     while page < pages:
         params = {
             'text': f'Программист {programming_language}',
-            'area': 1,
-            'period': 30,
+            'area': area_index,
+            'period': searching_period,
             'only_with_salary': 'True',
             'currency': 'RUR',
-            'per_page': 100,
+            'per_page': vacabcies_per_page,
             'page': page
         }
         response = requests.get(url=url, params=params)

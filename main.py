@@ -27,9 +27,7 @@ def get_hh_vacancies(programming_language: str) -> list:
         response.raise_for_status()
         hh_data = response.json()
         pages = hh_data['pages']
-        hh_vacancies = hh_data['items']
-        for item in hh_vacancies:
-            vacancies.append(item)
+        vacancies.extend(hh_data['items'])
 
         page += 1
     return vacancies
@@ -84,9 +82,7 @@ def get_sj_vacancies(programming_language: str, SUPERJOB_API_KEY: str) -> list:
         response.raise_for_status()
         sj_data = response.json()
         more = sj_data['more']
-        sj_vacancies = sj_data['objects']
-        for object in sj_vacancies:
-            vacancies.append(object)
+        vacancies.extend(sj_data['objects'])
 
     return vacancies
 

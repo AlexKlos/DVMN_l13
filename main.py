@@ -68,13 +68,13 @@ def get_hh_salary_statistic(programming_languages: list) -> dict:
     return salary_statistic
 
 
-def get_sj_vacancies(programming_language: str, SUPERJOB_API_KEY: str) -> list:
+def get_sj_vacancies(programming_language: str, superjob_api_key: str) -> list:
     url = 'https://api.superjob.ru/2.0/vacancies/'
     vacancies = []
     more = True
     while more:
         headers = {
-            'X-Api-App-Id': SUPERJOB_API_KEY
+            'X-Api-App-Id': superjob_api_key
         }
         params = {
             'count': 100,
@@ -115,10 +115,10 @@ def get_sj_average_salary(vacancies: list) -> tuple[int, int]:
     return int(average_salary), salary_count
 
 
-def get_sj_salary_statistic(programming_languages: list, SUPERJOB_API_KEY: str) -> dict:
+def get_sj_salary_statistic(programming_languages: list, superjob_api_key: str) -> dict:
     salary_statistic = {}
     for programming_language in programming_languages:
-        vacancies = get_sj_vacancies(programming_language, SUPERJOB_API_KEY)
+        vacancies = get_sj_vacancies(programming_language, superjob_api_key)
         average_salary, salary_count = get_sj_average_salary(vacancies)
         salary_statistic[programming_language] = {
             'vacancies_found': len(vacancies),
@@ -152,7 +152,7 @@ def print_table(salary_statistic: dict, table_title: str):
 
 def main():
     load_dotenv()
-    SUPERJOB_API_KEY = os.environ['SUPERJOB_API_KEY']
+    superjob_api_key = os.environ['SUPERJOB_API_KEY']
     programming_languages = [
         'Python',
         'C++',
@@ -169,7 +169,7 @@ def main():
     hh_salary_statistic = get_hh_salary_statistic(programming_languages)
     print_table(hh_salary_statistic, 'HeadHunter Moscow')
 
-    sj_salary_statistic = get_sj_salary_statistic(programming_languages, SUPERJOB_API_KEY)
+    sj_salary_statistic = get_sj_salary_statistic(programming_languages, superjob_api_key)
     print_table(sj_salary_statistic, 'SuperJob Moscow')
 
 

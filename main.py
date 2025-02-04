@@ -17,7 +17,7 @@ def predict_salary(salary_from: int, salary_to: int) -> int:
 def get_hh_vacancies(programming_language: str) -> list:
     area_index = 1
     searching_period = 30
-    vacabcies_per_page = 100
+    vacancies_per_page = 100
     url = 'https://api.hh.ru/vacancies'
     vacancies = []
     pages = 1
@@ -29,7 +29,7 @@ def get_hh_vacancies(programming_language: str) -> list:
             'period': searching_period,
             'only_with_salary': 'True',
             'currency': 'RUR',
-            'per_page': vacabcies_per_page,
+            'per_page': vacancies_per_page,
             'page': page
         }
         response = requests.get(url=url, params=params)
